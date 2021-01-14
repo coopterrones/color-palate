@@ -1,0 +1,10 @@
+@import "../../Styles/mixins";
+
+.card-wrapper {
+  @include color-cards;
+}
+
+.color-window {
+  height: 100%;
+  width: 100%;
+}
