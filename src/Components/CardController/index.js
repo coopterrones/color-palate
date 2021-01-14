@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ColorCard from "../ColorCard/index.js";
+import "./CardController.scss";
 
 const CardController = ({ colors }) => {
   return (
