@@ -7,9 +7,13 @@ const getDataRandom = () => {
     redirect: "follow",
   };
 
-  fetch('http://colormind.io/api/?"model"="default"', requestOptions)
-    .then((response) => response.json())
-    .then((result) => console.log(result.result))
+  return fetch('http://colormind.io/api/?"model"="default"', requestOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      return result.result;
+    })
     .catch((error) => console.log("error", error));
 };
 
@@ -22,19 +26,17 @@ const getDataFromInput = (colorInput) => {
     redirect: "follow",
   };
 
-  fetch(`http://colormind.io/api/?"input"=${colorInput}`, requestOptions)
+  return fetch(`http://colormind.io/api/?"input"=${colorInput}`, requestOptions)
     .then((response) => response.json())
     .then((result) => console.log(result.result))
     .catch((error) => console.log("error", error));
 };
 
-const apiCalls = {
+export const apiCalls = {
   getRandomPalette: () => {
-    getDataRandom();
+    return getDataRandom();
   },
   getRandomPaletteFromInput: (colorInput) => {
-    getDataFromInput(colorInput);
+    return getDataFromInput(colorInput);
   },
 };
-
-export default apiCalls;
