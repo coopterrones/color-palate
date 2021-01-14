@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { apiCalls } from "../../apiCalls";
+import CardController from "../CardController";
+import { Route } from "react-router-dom";
 
 const App = () => {
   const [colors, setColors] = useState(null);
@@ -17,7 +19,9 @@ const App = () => {
 
   useEffect(() => getColors(), []);
 
-  return <div className="App"></div>;
+  return (
+    <main className="App">{colors && <CardController colors={colors} />}</main>
+  );
 };
 
 export default App;
