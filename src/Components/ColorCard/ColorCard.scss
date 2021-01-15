@@ -16,3 +16,14 @@
 .rgb-value {
   margin: 0.25em;
 }
+
+.color-input {
+  border-style: none none solid none;
+  align-self: center;
+  margin-bottom: 1em;
+  outline: none;
+}
+
+.hidden {
+  visibility: hidden;
+}

@@ -9,6 +9,7 @@ const ColorCard = ({ color, hexCode }) => {
 
   return (
     <section className="card-wrapper">
+      <input className="hidden color-input" placeholder="255, 255, 255"></input>
       <div
         className="color-window"
         style={{

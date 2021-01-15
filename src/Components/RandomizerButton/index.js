@@ -3,7 +3,7 @@ import "./RandomizerButton.scss";
 
 const RandomizerButton = ({ randomizePalette, randomizeWithInput }) => {
   return (
-    <button className="randomizer-button" onClick={randomizeWithInput}>
+    <button className="randomizer-button" onClick={randomizePalette}>
       Random Palette
     </button>
   );

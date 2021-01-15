@@ -1,5 +1,8 @@
 @mixin color-cards {
-  height: 17.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 27.5vh;
   width: 10vw;
   margin: 3em;
 }

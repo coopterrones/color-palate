@@ -4,6 +4,7 @@ import { apiCalls } from "../../apiCalls";
 import CardController from "../CardController";
 import { Route } from "react-router-dom";
 import RandomizerButton from "../RandomizerButton";
+import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
@@ -85,6 +86,7 @@ const App = () => {
           randomizeWithInput={getColorsWithInput}
         />
       )}
+      {rgbValues && hexCodes && <AddMyOwnColors />}
     </main>
   );
 };
