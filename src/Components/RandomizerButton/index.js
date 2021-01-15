@@ -1,4 +1,5 @@
 import React from "react";
+import './RandomizerButton.scss';
 
 const RandomizerButton = ({ randomizePalette }) => {
   return (
