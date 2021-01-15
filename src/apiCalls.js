@@ -19,7 +19,7 @@ const getDataRandom = () => {
 
 const getDataFromInput = (colorInput) => {
   var raw = JSON.stringify({
-    input: [colorInput, "N", "N", "N"],
+    input: colorInput,
     model: "default",
   });
 

@@ -20,11 +20,13 @@ const App = () => {
       .catch((err) => setError(err.message));
   };
 
-  const getColorsWithInput = () => {
-    let input = [44, 43, 44, 90, 83, 82];
-    const inputFormatted = input.splice(0, 3);
-    console.log(inputFormatted);
-    apiCalls.getRandomPaletteFromInput(inputFormatted).then((data) => {
+  const getColorsWithInput = (input) => {
+    // FORMAT FOR COLORS WHEN CHOSING OWN -- xlet input = [
+    //   [44, 43, 44],
+    //   [90, 83, 82],
+    // ];
+    let colors = [...input, "N", "N", "N"];
+    apiCalls.getRandomPaletteFromInput(colors).then((data) => {
       console.log(data);
       setRgbValues(data);
       rgbToHex(data);
