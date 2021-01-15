@@ -44,8 +44,9 @@ const App = () => {
 
   return (
     <main className="App">
+      <h1>Dream Themes</h1>
       {rgbValues && hexCodes && (
-        <CardController style={{}}rgb={rgbValues} hexCodes={hexCodes} />
+        <CardController style={{}} rgb={rgbValues} hexCodes={hexCodes} />
       )}
       {rgbValues && hexCodes && (
         <RandomizerButton randomizePalette={randomizePalette} re />
