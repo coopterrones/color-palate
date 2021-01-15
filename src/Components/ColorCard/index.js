@@ -12,7 +12,7 @@ const ColorCard = ({ color, hexCode }) => {
       <div
         className="color-window"
         style={{
-          backgroundColor: rgbVal,
+          backgroundColor: hexCode,
         }}
       ></div>
       <p className="rgb-value">{`${color[0]}, ${color[1]}, ${color[2]}`}</p>
