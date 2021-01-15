@@ -36,14 +36,20 @@ const App = () => {
     setHexCodes(hexCodes);
   };
 
+  const randomizePalette = () => {
+    getColors();
+  };
+
   useEffect(() => getColors(), []);
 
   return (
     <main className="App">
       {rgbValues && hexCodes && (
-        <CardController rgb={rgbValues} hexCodes={hexCodes} />
+        <CardController style={{}}rgb={rgbValues} hexCodes={hexCodes} />
       )}
-      {rgbValues && hexCodes && <RandomizerButton />}
+      {rgbValues && hexCodes && (
+        <RandomizerButton randomizePalette={randomizePalette} re />
+      )}
     </main>
   );
 };
