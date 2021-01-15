@@ -3,6 +3,7 @@ import "./App.scss";
 import { apiCalls } from "../../apiCalls";
 import CardController from "../CardController";
 import { Route } from "react-router-dom";
+import RandomizerButton from "../RandomizerButton";
 
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
@@ -42,6 +43,7 @@ const App = () => {
       {rgbValues && hexCodes && (
         <CardController rgb={rgbValues} hexCodes={hexCodes} />
       )}
+      {rgbValues && hexCodes && <RandomizerButton />}
     </main>
   );
 };
