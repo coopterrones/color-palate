@@ -15,7 +15,7 @@ const ColorCard = ({ color, hexCode }) => {
           backgroundColor: rgbVal,
         }}
       ></div>
-      <p className="rgb-value"></p>
+      <p className="rgb-value">{`${color[0]}, ${color[1]}, ${color[2]}`}</p>
       <p className="hex-code-value">{hex}</p>
     </section>
   );
