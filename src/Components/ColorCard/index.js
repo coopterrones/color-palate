@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./ColorCard.scss";
 
-const ColorCard = ({ color, hexCode, colorInputs }) => {
+const ColorCard = ({ color, hexCode, colorInputsToggle }) => {
   const [rgbVal, setRgbVal] = useState(
     `rgb(${color[0]}, ${color[1]}, ${color[2]})`
   );
   const [hex, setHexCode] = useState(hexCode);
-  const [colorInputsVisible, setColorInputsVisible] = useState(colorInputs);
+  const [colorInputsVisible, setColorInputsVisible] = useState(
+    colorInputsToggle
+  );
 
   const colorInputsClassName = colorInputsVisible
     ? "color-input"
     : "hidden color-input";
 
-  useEffect(() => setColorInputsVisible(colorInputs), [colorInputs]);
+  useEffect(() => setColorInputsVisible(colorInputsToggle), [
+    colorInputsToggle,
+  ]);
   useEffect(() => setHexCode(hexCode), [hexCode]);
   return (
     <section className="card-wrapper">

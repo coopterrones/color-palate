@@ -9,7 +9,7 @@ import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
   const [hexCodes, setHexCodes] = useState(null);
-  const [colorInputs, setColorInputs] = useState(false);
+  const [colorInputsToggle, setColorInputsToggle] = useState(false);
   const [error, setError] = useState("");
 
   const getColors = () => {
@@ -51,8 +51,10 @@ const App = () => {
   };
 
   const toggleColorInputs = () => {
-    setColorInputs(!colorInputs);
+    setColorInputsToggle(!colorInputsToggle);
   };
+
+  const handleColorInputs = () => {};
 
   const randomizePalette = () => {
     getColors();
@@ -82,7 +84,8 @@ const App = () => {
           rgb={rgbValues}
           hexCodes={hexCodes}
           lockCard={lockCard}
-          colorInputs={colorInputs}
+          colorInputsToggle={colorInputsToggle}
+          handleColorInputs={handleColorInputs}
         />
       )}
       {rgbValues && hexCodes && (
