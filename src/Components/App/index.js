@@ -9,6 +9,7 @@ import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
   const [hexCodes, setHexCodes] = useState(null);
+  const [userInputs, setUserInputs] = useState(null);
   const [colorInputsToggle, setColorInputsToggle] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,6 +19,7 @@ const App = () => {
       .then((data) => {
         setRgbValues(data);
         rgbToHex(data);
+        setUserInputs(data);
       })
       .catch((err) => setError(err.message));
   };
@@ -48,13 +50,53 @@ const App = () => {
       return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
     });
     setHexCodes(hexCodes);
+    setUserInputs({ ...userInputs, hexCodes: hexCodes });
   };
 
   const toggleColorInputs = () => {
     setColorInputsToggle(!colorInputsToggle);
   };
 
-  const handleColorInputs = () => {};
+  const submitColorInput = (userInput) => {
+    console.log(userInput);
+
+    // const inputId = parseInt(event.target.id);
+    // let validRgb;
+    // let validHex = /^#[0-9A-F]{6}$/i.test(event.target.value);
+    // let result;
+    // const rgbSplit = event.target.value.split(",");
+    // const rgbFormat = rgbSplit.map((value) => {
+    //   return parseInt(value);
+    // });
+    // console.log(rgbFormat);
+    // if (validHex) {
+    //   console.log("hi hex");
+    //   result = event.target.value;
+    //   validHex = true;
+    // } else if (
+    //   rgbFormat.length === 3 &&
+    //   rgbFormat[0] <= 255 &&
+    //   rgbFormat[1] <= 255 &&
+    //   rgbFormat[2] <= 255 &&
+    //   rgbFormat[0] >= 0 &&
+    //   rgbFormat[1] >= 0 &&
+    //   rgbFormat[2] >= 0
+    // ) {
+    //   console.log("hi");
+    //   result = `rgb(${parseInt(rgbFormat[0])},${parseInt(rgbFormat[1])},${
+    //     parseInt[2]
+    //   })`;
+    //   validRgb = true;
+    // }
+
+    // if (validRgb || validHex) {
+    //   console.log("hi");
+    // }
+  };
+
+  // const submitColorInput = (event) => {
+  //   console.log(event.target);
+  // };
 
   const randomizePalette = () => {
     getColors();
@@ -85,7 +127,8 @@ const App = () => {
           hexCodes={hexCodes}
           lockCard={lockCard}
           colorInputsToggle={colorInputsToggle}
-          handleColorInputs={handleColorInputs}
+          // handleColorInputs={handleColorInputs}
+          submitColorInput={submitColorInput}
         />
       )}
       {rgbValues && hexCodes && (
