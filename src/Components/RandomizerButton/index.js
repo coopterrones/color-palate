@@ -1,7 +1,7 @@
 import React from "react";
-import './RandomizerButton.scss';
+import "./RandomizerButton.scss";
 
-const RandomizerButton = ({ randomizePalette }) => {
+const RandomizerButton = ({ randomizePalette, randomizeWithInput }) => {
   return (
     <button className="randomizer-button" onClick={randomizePalette}>
       Random Palette

@@ -18,7 +18,10 @@ const getDataRandom = () => {
 };
 
 const getDataFromInput = (colorInput) => {
-  var raw = JSON.stringify({ model: "default" });
+  var raw = JSON.stringify({
+    input: colorInput,
+    model: "default",
+  });
 
   var requestOptions = {
     method: "POST",
@@ -26,9 +29,13 @@ const getDataFromInput = (colorInput) => {
     redirect: "follow",
   };
 
-  return fetch(`http://colormind.io/api/?"input"=${colorInput}`, requestOptions)
-    .then((response) => response.json())
-    .then((result) => console.log(result.result))
+  return fetch(`http://colormind.io/api/`, requestOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      return result.result;
+    })
     .catch((error) => console.log("error", error));
 };
 
