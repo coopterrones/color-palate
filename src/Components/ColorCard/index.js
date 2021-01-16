@@ -13,7 +13,7 @@ const ColorCard = ({ color, hexCode, colorInputs }) => {
     : "hidden color-input";
 
   useEffect(() => setColorInputsVisible(colorInputs), [colorInputs]);
-
+  useEffect(() => setHexCode(hexCode), [hexCode]);
   return (
     <section className="card-wrapper">
       <input
