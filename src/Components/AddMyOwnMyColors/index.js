@@ -1,9 +1,11 @@
 import React from "react";
 import "./AddMyOwnColors.scss";
 
-const AddMyOwnColors = () => {
+const AddMyOwnColors = ({ handleColorInputs }) => {
   return (
-    <button className="add-my-own-colors-button">Add your own colors</button>
+    <button className="add-my-own-colors-button" onClick={handleColorInputs}>
+      Add your own colors
+    </button>
   );
 };
 

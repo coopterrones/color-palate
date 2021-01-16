@@ -9,6 +9,7 @@ import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
   const [hexCodes, setHexCodes] = useState(null);
+  const [colorInputs, setColorInputs] = useState(false);
   const [error, setError] = useState("");
 
   const getColors = () => {
@@ -28,7 +29,6 @@ const App = () => {
     // ];
     let colors = [...input, "N", "N", "N"];
     apiCalls.getRandomPaletteFromInput(colors).then((data) => {
-      console.log(data);
       setRgbValues(data);
       rgbToHex(data);
     });
@@ -48,6 +48,10 @@ const App = () => {
       return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
     });
     setHexCodes(hexCodes);
+  };
+
+  const handleColorInputs = () => {
+    setColorInputs(!colorInputs);
   };
 
   const randomizePalette = () => {
@@ -78,6 +82,7 @@ const App = () => {
           rgb={rgbValues}
           hexCodes={hexCodes}
           lockCard={lockCard}
+          colorInputs={colorInputs}
         />
       )}
       {rgbValues && hexCodes && (
@@ -86,7 +91,9 @@ const App = () => {
           randomizeWithInput={getColorsWithInput}
         />
       )}
-      {rgbValues && hexCodes && <AddMyOwnColors />}
+      {rgbValues && hexCodes && (
+        <AddMyOwnColors handleColorInputs={handleColorInputs} />
+      )}
     </main>
   );
 };
