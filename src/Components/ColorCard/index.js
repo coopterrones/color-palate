@@ -19,7 +19,7 @@ const ColorCard = ({
     : "hidden color-form";
 
   const handleColorInputs = (event) => {
-    setUserInput(event.target.value);
+    setUserInput((event.target.value));
   };
 
   useEffect(() => setColorInputsVisible(colorInputsToggle), [
@@ -33,8 +33,8 @@ const ColorCard = ({
         className={colorInputsVisibility}
         value={userInput}
         onSubmit={(event) => {
-          submitColorInput(userInput);
           event.preventDefault();
+          submitColorInput(userInput);
         }}
       >
         <input

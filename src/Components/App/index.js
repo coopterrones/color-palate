@@ -58,51 +58,41 @@ const App = () => {
   };
 
   const submitColorInput = (userInput) => {
-    console.log(userInput);
+    let validRgb;
+    let validHex = /^#[0-9A-F]{6}$/i.test(userInput);
+    let result;
+    const rgbSplit = userInput.split(",");
+    const rgbFormat = rgbSplit.map((value) => {
+      return parseInt(value);
+    });
+    if (validHex) {
+      result = userInput;
+    } else if (
+      rgbFormat.length === 3 &&
+      rgbFormat[0] <= 255 &&
+      rgbFormat[1] <= 255 &&
+      rgbFormat[2] <= 255 &&
+      rgbFormat[0] >= 0 &&
+      rgbFormat[1] >= 0 &&
+      rgbFormat[2] >= 0
+    ) {
+      result = `rgb(${parseInt(rgbFormat[0])},${parseInt(
+        rgbFormat[1]
+      )},${parseInt(rgbFormat[2])})`;
+      validRgb = true;
+    }
 
-    // const inputId = parseInt(event.target.id);
-    // let validRgb;
-    // let validHex = /^#[0-9A-F]{6}$/i.test(event.target.value);
-    // let result;
-    // const rgbSplit = event.target.value.split(",");
-    // const rgbFormat = rgbSplit.map((value) => {
-    //   return parseInt(value);
-    // });
-    // console.log(rgbFormat);
-    // if (validHex) {
-    //   console.log("hi hex");
-    //   result = event.target.value;
-    //   validHex = true;
-    // } else if (
-    //   rgbFormat.length === 3 &&
-    //   rgbFormat[0] <= 255 &&
-    //   rgbFormat[1] <= 255 &&
-    //   rgbFormat[2] <= 255 &&
-    //   rgbFormat[0] >= 0 &&
-    //   rgbFormat[1] >= 0 &&
-    //   rgbFormat[2] >= 0
-    // ) {
-    //   console.log("hi");
-    //   result = `rgb(${parseInt(rgbFormat[0])},${parseInt(rgbFormat[1])},${
-    //     parseInt[2]
-    //   })`;
-    //   validRgb = true;
-    // }
-
-    // if (validRgb || validHex) {
-    //   console.log("hi");
-    // }
+    if (validRgb) {
+      randomizePaletteWithInput(result);
+    }
   };
-
-  // const submitColorInput = (event) => {
-  //   console.log(event.target);
-  // };
 
   const randomizePalette = () => {
     getColors();
   };
 
-  const randomizePaletteWithInput = () => {
+  const randomizePaletteWithInput = (result) => {
+    console.log(result);
     //input should be rgb values or hexcode ...
     //use rgb to hex func. to conver input if the input is from the user input
     //use a helper of getColorsFromInput
