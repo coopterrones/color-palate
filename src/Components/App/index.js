@@ -50,7 +50,7 @@ const App = () => {
     setHexCodes(hexCodes);
   };
 
-  const handleColorInputs = () => {
+  const toggleColorInputs = () => {
     setColorInputs(!colorInputs);
   };
 
@@ -92,7 +92,7 @@ const App = () => {
         />
       )}
       {rgbValues && hexCodes && (
-        <AddMyOwnColors handleColorInputs={handleColorInputs} />
+        <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
       )}
     </main>
   );
