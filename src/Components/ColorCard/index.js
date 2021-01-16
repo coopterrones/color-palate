@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ColorCard.scss";
 
-const ColorCard = ({ color, hexCode, colorInputsToggle }) => {
+const ColorCard = ({ color, hexCode, colorInputsToggle, id }) => {
   const [rgbVal, setRgbVal] = useState(
     `rgb(${color[0]}, ${color[1]}, ${color[2]})`
   );
@@ -23,6 +23,7 @@ const ColorCard = ({ color, hexCode, colorInputsToggle }) => {
       <input
         className={colorInputsClassName}
         placeholder="255, 255, 255"
+        id={id}
       ></input>
       <div
         className="color-window"
