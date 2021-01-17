@@ -25,12 +25,7 @@ const App = () => {
   };
 
   const getColorsWithInput = (input) => {
-    // FORMAT FOR COLORS WHEN CHOSING OWN -- xlet input = [
-    //   [44, 43, 44],
-    //   [90, 83, 82],
-    // ];
     let colors = [[...input], "N", "N", "N"];
-    console.log(colors);
     apiCalls.getRandomPaletteFromInput(colors).then((data) => {
       setRgbValues(data);
       rgbToHex(data);
@@ -60,7 +55,6 @@ const App = () => {
 
   const submitColorInput = (input) => {
     let validRgb;
-    let result;
     const rgbSplit = input.split(",");
     const rgbFormat = rgbSplit.map((value) => {
       return parseInt(value);
@@ -112,7 +106,6 @@ const App = () => {
           hexCodes={hexCodes}
           lockCard={lockCard}
           colorInputsToggle={colorInputsToggle}
-          // handleColorInputs={handleColorInputs}
           submitColorInput={submitColorInput}
         />
       )}
