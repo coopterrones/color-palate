@@ -29,7 +29,8 @@ const App = () => {
     //   [44, 43, 44],
     //   [90, 83, 82],
     // ];
-    let colors = [...input, "N", "N", "N"];
+    let colors = [[...input], "N", "N", "N"];
+    console.log(colors);
     apiCalls.getRandomPaletteFromInput(colors).then((data) => {
       setRgbValues(data);
       rgbToHex(data);
@@ -57,17 +58,14 @@ const App = () => {
     setColorInputsToggle(!colorInputsToggle);
   };
 
-  const submitColorInput = (userInput) => {
+  const submitColorInput = (input) => {
     let validRgb;
-    let validHex = /^#[0-9A-F]{6}$/i.test(userInput);
     let result;
-    const rgbSplit = userInput.split(",");
+    const rgbSplit = input.split(",");
     const rgbFormat = rgbSplit.map((value) => {
       return parseInt(value);
     });
-    if (validHex) {
-      result = userInput;
-    } else if (
+    if (
       rgbFormat.length === 3 &&
       rgbFormat[0] <= 255 &&
       rgbFormat[1] <= 255 &&
@@ -76,14 +74,11 @@ const App = () => {
       rgbFormat[1] >= 0 &&
       rgbFormat[2] >= 0
     ) {
-      result = `rgb(${parseInt(rgbFormat[0])},${parseInt(
-        rgbFormat[1]
-      )},${parseInt(rgbFormat[2])})`;
       validRgb = true;
     }
 
     if (validRgb) {
-      randomizePaletteWithInput(result);
+      randomizePaletteWithInput(rgbFormat);
     }
   };
 
@@ -91,8 +86,8 @@ const App = () => {
     getColors();
   };
 
-  const randomizePaletteWithInput = (result) => {
-    console.log(result);
+  const randomizePaletteWithInput = (input) => {
+    getColorsWithInput(input);
     //input should be rgb values or hexcode ...
     //use rgb to hex func. to conver input if the input is from the user input
     //use a helper of getColorsFromInput
