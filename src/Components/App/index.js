@@ -92,7 +92,6 @@ const App = () => {
   };
 
   const savePalette = (paletteName) => {
-    console.log(paletteName);
     if (userFavorites.length) {
       setUserFavorites([
         ...userFavorites,

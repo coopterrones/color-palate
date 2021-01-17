@@ -26,10 +26,20 @@ const SavePaletteForm = ({ savePalette }) => {
           value={paletteName}
         >
           <input
+            type="text"
             className="palette-name-input"
             placeholder="ie. website theme"
             onChange={(event) => handleInput(event)}
-          ></input>
+          />
+          <br></br>
+          <input
+            type="button"
+            value="Submit."
+            onClick={(event) => {
+              event.preventDefault();
+              savePalette(paletteName);
+            }}
+          />
         </form>
       </section>
     </div>
