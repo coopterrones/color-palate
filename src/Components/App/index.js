@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./App.scss";
 import { apiCalls } from "../../apiCalls";
 import CardController from "../CardController";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RandomizerButton from "../RandomizerButton";
 import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 
@@ -12,6 +12,8 @@ const App = () => {
   const [userInputs, setUserInputs] = useState(null);
   const [colorInputsToggle, setColorInputsToggle] = useState(false);
   const [error, setError] = useState("");
+  const [showUserForm, setShowUserForm] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([]);
 
   const getColors = () => {
     apiCalls
@@ -82,10 +84,9 @@ const App = () => {
 
   const randomizePaletteWithInput = (input) => {
     getColorsWithInput(input);
-    //input should be rgb values or hexcode ...
-    //use rgb to hex func. to conver input if the input is from the user input
-    //use a helper of getColorsFromInput
   };
+
+  const displaySavePaletteForm = () => {};
 
   const lockCard = () => {
     //needs to give a class to the ColorCard component to display locked icon
@@ -97,28 +98,35 @@ const App = () => {
   useEffect(() => getColors(), []);
 
   return (
-    <main className="App">
-      <h1>Dream Themes</h1>
-      {rgbValues && hexCodes && (
-        <CardController
-          style={{}}
-          rgb={rgbValues}
-          hexCodes={hexCodes}
-          lockCard={lockCard}
-          colorInputsToggle={colorInputsToggle}
-          submitColorInput={submitColorInput}
-        />
-      )}
-      {rgbValues && hexCodes && (
-        <RandomizerButton
-          randomizePalette={randomizePalette}
-          randomizeWithInput={getColorsWithInput}
-        />
-      )}
-      {rgbValues && hexCodes && (
-        <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
-      )}
-    </main>
+    <Router>
+      <main className="App">
+        <h1>Dream Themes</h1>
+        {rgbValues && hexCodes && (
+          <Route
+            path="/colors"
+            render={() => (
+              <Fragment>
+                <CardController
+                  style={{}}
+                  rgb={rgbValues}
+                  hexCodes={hexCodes}
+                  lockCard={lockCard}
+                  colorInputsToggle={colorInputsToggle}
+                  submitColorInput={submitColorInput}
+                  displaySavePaletteForm={displaySavePaletteForm}
+                />
+                <RandomizerButton
+                  randomizePalette={randomizePalette}
+                  randomizeWithInput={getColorsWithInput}
+                />
+                <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
+              </Fragment>
+            )}
+          />
+        )}
+        {showUserForm && <Route path="colors/save-palette" />}
+      </main>
+    </Router>
   );
 };
 

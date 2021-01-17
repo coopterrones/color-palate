@@ -9,6 +9,7 @@ const CardController = ({
   colorInputsToggle,
   handleColorInputs,
   submitColorInput,
+  displaySavePaletteForm,
 }) => {
   return (
     <section className="card-controller-wrapper">
@@ -59,7 +60,9 @@ const CardController = ({
           id={4}
         />
       </section>
-      <button className="save-palette-button">Save this palette?</button>
+      <button className="save-palette-button" onClick={displaySavePaletteForm}>
+        Save this palette?
+      </button>
     </section>
   );
 };
