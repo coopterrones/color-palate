@@ -91,6 +91,11 @@ const App = () => {
     setShowUserForm(true);
   };
 
+  const savePalette = (event) => {
+    event.preventDefault();
+    console.log(userInputs);
+  };
+
   const lockCard = () => {
     //needs to give a class to the ColorCard component to display locked icon
     //need to create a string for the input that it is locking using the rgb val
@@ -130,7 +135,7 @@ const App = () => {
         {showUserForm && (
           <Route
             path="/colors/save-palette"
-            render={() => <SavePaletteForm />}
+            render={() => <SavePaletteForm savePalette={savePalette} />}
           />
         )}
       </main>
