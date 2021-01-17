@@ -89,7 +89,6 @@ const App = () => {
 
   const displaySavePaletteForm = () => {
     setShowUserForm(true);
-    console.log("hi");
   };
 
   const lockCard = () => {

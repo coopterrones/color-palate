@@ -1,0 +1,43 @@
+.save-palette-background-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba($color: #000000, $alpha: 0.75);
+}
+
+.form-title {
+  text-align: center;
+}
+
+.save-palette-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25vh;
+  width: 35vw;
+  background-color: white;
+}
+
+.save-palette-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-submit-button {
+  display: flex;
+  align-self: flex-end;
+  margin-top: 3.5vh;
+}
+
+.palette-name-input {
+  outline: none;
+  height: 5vh;
+  width: 25vw;
+  font-size: 15px;
+  border-style: none none solid none;
+}
