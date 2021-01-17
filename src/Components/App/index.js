@@ -9,7 +9,8 @@ import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
   const [hexCodes, setHexCodes] = useState(null);
-  const [colorInputs, setColorInputs] = useState(false);
+  const [userInputs, setUserInputs] = useState(null);
+  const [colorInputsToggle, setColorInputsToggle] = useState(false);
   const [error, setError] = useState("");
 
   const getColors = () => {
@@ -18,6 +19,7 @@ const App = () => {
       .then((data) => {
         setRgbValues(data);
         rgbToHex(data);
+        setUserInputs(data);
       })
       .catch((err) => setError(err.message));
   };
@@ -27,7 +29,8 @@ const App = () => {
     //   [44, 43, 44],
     //   [90, 83, 82],
     // ];
-    let colors = [...input, "N", "N", "N"];
+    let colors = [[...input], "N", "N", "N"];
+    console.log(colors);
     apiCalls.getRandomPaletteFromInput(colors).then((data) => {
       setRgbValues(data);
       rgbToHex(data);
@@ -48,17 +51,43 @@ const App = () => {
       return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
     });
     setHexCodes(hexCodes);
+    setUserInputs({ ...userInputs, hexCodes: hexCodes });
   };
 
-  const handleColorInputs = () => {
-    setColorInputs(!colorInputs);
+  const toggleColorInputs = () => {
+    setColorInputsToggle(!colorInputsToggle);
+  };
+
+  const submitColorInput = (input) => {
+    let validRgb;
+    let result;
+    const rgbSplit = input.split(",");
+    const rgbFormat = rgbSplit.map((value) => {
+      return parseInt(value);
+    });
+    if (
+      rgbFormat.length === 3 &&
+      rgbFormat[0] <= 255 &&
+      rgbFormat[1] <= 255 &&
+      rgbFormat[2] <= 255 &&
+      rgbFormat[0] >= 0 &&
+      rgbFormat[1] >= 0 &&
+      rgbFormat[2] >= 0
+    ) {
+      validRgb = true;
+    }
+
+    if (validRgb) {
+      randomizePaletteWithInput(rgbFormat);
+    }
   };
 
   const randomizePalette = () => {
     getColors();
   };
 
-  const randomizePaletteWithInput = () => {
+  const randomizePaletteWithInput = (input) => {
+    getColorsWithInput(input);
     //input should be rgb values or hexcode ...
     //use rgb to hex func. to conver input if the input is from the user input
     //use a helper of getColorsFromInput
@@ -82,7 +111,9 @@ const App = () => {
           rgb={rgbValues}
           hexCodes={hexCodes}
           lockCard={lockCard}
-          colorInputs={colorInputs}
+          colorInputsToggle={colorInputsToggle}
+          // handleColorInputs={handleColorInputs}
+          submitColorInput={submitColorInput}
         />
       )}
       {rgbValues && hexCodes && (
@@ -92,7 +123,7 @@ const App = () => {
         />
       )}
       {rgbValues && hexCodes && (
-        <AddMyOwnColors handleColorInputs={handleColorInputs} />
+        <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
       )}
     </main>
   );

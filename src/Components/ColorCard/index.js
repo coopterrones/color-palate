@@ -1,25 +1,50 @@
 import React, { useState, useEffect } from "react";
 import "./ColorCard.scss";
 
-const ColorCard = ({ color, hexCode, colorInputs }) => {
-  const [rgbVal, setRgbVal] = useState(
-    `rgb(${color[0]}, ${color[1]}, ${color[2]})`
-  );
+const ColorCard = ({
+  color,
+  hexCode,
+  colorInputsToggle,
+  submitColorInput,
+  id,
+}) => {
   const [hex, setHexCode] = useState(hexCode);
-  const [colorInputsVisible, setColorInputsVisible] = useState(colorInputs);
+  const [colorInputsVisible, setColorInputsVisible] = useState(
+    colorInputsToggle
+  );
+  const [userInput, setUserInput] = useState("");
 
-  const colorInputsClassName = colorInputsVisible
-    ? "color-input"
-    : "hidden color-input";
+  const colorInputsVisibility = colorInputsVisible
+    ? "color-form"
+    : "hidden color-form";
 
-  useEffect(() => setColorInputsVisible(colorInputs), [colorInputs]);
+  const handleColorInputs = (event) => {
+    setUserInput((event.target.value));
+  };
+
+  useEffect(() => setColorInputsVisible(colorInputsToggle), [
+    colorInputsToggle,
+  ]);
   useEffect(() => setHexCode(hexCode), [hexCode]);
+
   return (
     <section className="card-wrapper">
-      <input
-        className={colorInputsClassName}
-        placeholder="255, 255, 255"
-      ></input>
+      <form
+        className={colorInputsVisibility}
+        value={userInput}
+        onSubmit={(event) => {
+          event.preventDefault();
+          submitColorInput(userInput);
+        }}
+      >
+        <input
+          className="color-input"
+          placeholder="255, 255, 255"
+          id={id}
+          value={userInput}
+          onChange={(event) => handleColorInputs(event)}
+        ></input>
+      </form>
       <div
         className="color-window"
         style={{
@@ -27,7 +52,7 @@ const ColorCard = ({ color, hexCode, colorInputs }) => {
         }}
       ></div>
       <p className="rgb-value">{`${color[0]}, ${color[1]}, ${color[2]}`}</p>
-      <p className="hex-code-value">{hex}</p>
+      <p className="hex-code-value">{hex.toUpperCase()}</p>
     </section>
   );
 };
