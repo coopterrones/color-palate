@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: absolute;
+  padding: 3.5em;
   z-index: 1;
   height: 100vh;
   width: 100vw;

@@ -91,9 +91,16 @@ const App = () => {
     setShowUserForm(true);
   };
 
-  const savePalette = (event) => {
-    event.preventDefault();
-    console.log(userInputs);
+  const savePalette = (paletteName) => {
+    console.log(paletteName);
+    if (userFavorites.length) {
+      setUserFavorites([
+        ...userFavorites,
+        { name: paletteName, values: [userInputs] },
+      ]);
+    } else {
+      setUserFavorites([{ name: paletteName, values: [userInputs] }]);
+    }
   };
 
   const lockCard = () => {
