@@ -1,8 +1,25 @@
 .card-controller-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 50vh;
   width: 85vw;
+}
+
+.color-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-palette-button {
+  border-style: none;
+  background: none;
+  transition: 750ms;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./App.scss";
 import { apiCalls } from "../../apiCalls";
 import CardController from "../CardController";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RandomizerButton from "../RandomizerButton";
 import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
+import SavePaletteForm from "../SavePaletteForm/SavePaletteForm";
 
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
@@ -12,6 +13,8 @@ const App = () => {
   const [userInputs, setUserInputs] = useState(null);
   const [colorInputsToggle, setColorInputsToggle] = useState(false);
   const [error, setError] = useState("");
+  const [showUserForm, setShowUserForm] = useState(false);
+  const [userFavorites, setUserFavorites] = useState([]);
 
   const getColors = () => {
     apiCalls
@@ -25,12 +28,7 @@ const App = () => {
   };
 
   const getColorsWithInput = (input) => {
-    // FORMAT FOR COLORS WHEN CHOSING OWN -- xlet input = [
-    //   [44, 43, 44],
-    //   [90, 83, 82],
-    // ];
     let colors = [[...input], "N", "N", "N"];
-    console.log(colors);
     apiCalls.getRandomPaletteFromInput(colors).then((data) => {
       setRgbValues(data);
       rgbToHex(data);
@@ -60,7 +58,6 @@ const App = () => {
 
   const submitColorInput = (input) => {
     let validRgb;
-    let result;
     const rgbSplit = input.split(",");
     const rgbFormat = rgbSplit.map((value) => {
       return parseInt(value);
@@ -88,9 +85,21 @@ const App = () => {
 
   const randomizePaletteWithInput = (input) => {
     getColorsWithInput(input);
-    //input should be rgb values or hexcode ...
-    //use rgb to hex func. to conver input if the input is from the user input
-    //use a helper of getColorsFromInput
+  };
+
+  const displaySavePaletteForm = () => {
+    setShowUserForm(true);
+  };
+
+  const savePalette = (paletteName) => {
+    if (userFavorites.length) {
+      setUserFavorites([
+        ...userFavorites,
+        { name: paletteName, values: [userInputs] },
+      ]);
+    } else {
+      setUserFavorites([{ name: paletteName, values: [userInputs] }]);
+    }
   };
 
   const lockCard = () => {
@@ -103,29 +112,40 @@ const App = () => {
   useEffect(() => getColors(), []);
 
   return (
-    <main className="App">
-      <h1>Dream Themes</h1>
-      {rgbValues && hexCodes && (
-        <CardController
-          style={{}}
-          rgb={rgbValues}
-          hexCodes={hexCodes}
-          lockCard={lockCard}
-          colorInputsToggle={colorInputsToggle}
-          // handleColorInputs={handleColorInputs}
-          submitColorInput={submitColorInput}
-        />
-      )}
-      {rgbValues && hexCodes && (
-        <RandomizerButton
-          randomizePalette={randomizePalette}
-          randomizeWithInput={getColorsWithInput}
-        />
-      )}
-      {rgbValues && hexCodes && (
-        <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
-      )}
-    </main>
+    <Router>
+      <main className="App">
+        <h1>Dream Themes</h1>
+        {rgbValues && hexCodes && (
+          <Route
+            path="/colors"
+            render={() => (
+              <Fragment>
+                <CardController
+                  style={{}}
+                  rgb={rgbValues}
+                  hexCodes={hexCodes}
+                  lockCard={lockCard}
+                  colorInputsToggle={colorInputsToggle}
+                  submitColorInput={submitColorInput}
+                  displaySavePaletteForm={displaySavePaletteForm}
+                />
+                <RandomizerButton
+                  randomizePalette={randomizePalette}
+                  randomizeWithInput={getColorsWithInput}
+                />
+                <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
+              </Fragment>
+            )}
+          />
+        )}
+        {showUserForm && (
+          <Route
+            path="/colors/save-palette"
+            render={() => <SavePaletteForm savePalette={savePalette} />}
+          />
+        )}
+      </main>
+    </Router>
   );
 };
 
