@@ -5,6 +5,7 @@ import CardController from "../CardController";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RandomizerButton from "../RandomizerButton";
 import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
+import SavePaletteForm from "../SavePaletteForm/SavePaletteForm";
 
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
@@ -86,7 +87,10 @@ const App = () => {
     getColorsWithInput(input);
   };
 
-  const displaySavePaletteForm = () => {};
+  const displaySavePaletteForm = () => {
+    setShowUserForm(true);
+    console.log("hi");
+  };
 
   const lockCard = () => {
     //needs to give a class to the ColorCard component to display locked icon
@@ -124,7 +128,12 @@ const App = () => {
             )}
           />
         )}
-        {showUserForm && <Route path="colors/save-palette" />}
+        {showUserForm && (
+          <Route
+            path="/colors/save-palette"
+            render={() => <SavePaletteForm />}
+          />
+        )}
       </main>
     </Router>
   );

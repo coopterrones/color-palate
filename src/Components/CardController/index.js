@@ -1,6 +1,7 @@
 import React from "react";
 import ColorCard from "../ColorCard/index.js";
 import "./CardController.scss";
+import { Link } from "react-router-dom";
 
 const CardController = ({
   rgb,
@@ -60,9 +61,14 @@ const CardController = ({
           id={4}
         />
       </section>
-      <button className="save-palette-button" onClick={displaySavePaletteForm}>
-        Save this palette?
-      </button>
+      <Link to="/colors/save-palette">
+        <button
+          className="save-palette-button"
+          onClick={displaySavePaletteForm}
+        >
+          Save this palette?
+        </button>
+      </Link>
     </section>
   );
 };
