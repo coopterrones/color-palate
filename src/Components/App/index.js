@@ -2,10 +2,11 @@ import React, { useState, useEffect, Fragment } from "react";
 import "./App.scss";
 import { apiCalls } from "../../apiCalls";
 import CardController from "../CardController";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RandomizerButton from "../RandomizerButton";
 import AddMyOwnColors from "../AddMyOwnMyColors/index.js";
 import SavePaletteForm from "../SavePaletteForm/SavePaletteForm";
+import User from "../../Components/User/index";
 
 const App = () => {
   const [rgbValues, setRgbValues] = useState(null);
@@ -95,7 +96,10 @@ const App = () => {
     if (userFavorites.length) {
       setUserFavorites([
         ...userFavorites,
-        { name: paletteName, values: [userInputs] },
+        {
+          name: paletteName,
+          values: [userInputs],
+        },
       ]);
     } else {
       setUserFavorites([{ name: paletteName, values: [userInputs] }]);
@@ -115,8 +119,12 @@ const App = () => {
     <Router>
       <main className="App">
         <h1>Dream Themes</h1>
+        <Link to="/colors/user-favorites">
+          <h3 className="user-nav-button">Saved Palettes</h3>
+        </Link>
         {rgbValues && hexCodes && (
           <Route
+            exact
             path="/colors"
             render={() => (
               <Fragment>
@@ -143,6 +151,11 @@ const App = () => {
             render={() => <SavePaletteForm savePalette={savePalette} />}
           />
         )}
+        <Route
+          exact
+          path="/colors/user-favorites"
+          render={() => <User userFavorites={userFavorites} />}
+        />
       </main>
     </Router>
   );
