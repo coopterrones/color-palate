@@ -18,6 +18,7 @@ const SavePaletteForm = ({ savePalette }) => {
       <section className="save-palette-form-wrapper">
         <h2 className="form-title">Please enter a name for your palette.</h2>
         <form
+          data-testid="save-palette-form"
           className="save-palette-form"
           onSubmit={(event) => {
             event.preventDefault();
@@ -28,7 +29,7 @@ const SavePaletteForm = ({ savePalette }) => {
           <input
             type="text"
             className="palette-name-input"
-            placeholder="ie. website theme"
+            placeholder="i.e. website theme"
             onChange={(event) => handleInput(event)}
           />
           <br></br>
