@@ -145,4 +145,27 @@ describe("CardController", () => {
     expect(hexCode4).toBeInTheDocument();
     expect(hexCode5).toBeInTheDocument();
   });
+
+  it("should render the save palette button correctly", () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+
+    const savePaletteButton = screen.getByRole("button");
+
+    expect(savePaletteButton).toBeInTheDocument();
+  });
 });
