@@ -47,7 +47,9 @@ const App = () => {
       const g = color[1];
       const b = color[2];
 
-      return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+      return `#${componentToHex(r).toUpperCase()}${componentToHex(
+        g
+      ).toUpperCase()}${componentToHex(b).toUpperCase()}`;
     });
     setHexCodes(hexCodes);
     setUserInputs({ ...userInputs, hexCodes: hexCodes });
@@ -99,10 +101,13 @@ const App = () => {
         {
           name: paletteName,
           values: [userInputs],
+          favHexCodes: hexCodes,
         },
       ]);
     } else {
-      setUserFavorites([{ name: paletteName, values: [userInputs] }]);
+      setUserFavorites([
+        { name: paletteName, values: [userInputs], favHexCodes: hexCodes },
+      ]);
     }
   };
 

@@ -1,6 +1,11 @@
 import React from "react";
+import FavoritePalette from "../FavoriteCard/index.js";
+import "./User.scss";
 
 const User = ({ userFavorites }) => {
+  const colorCardsFavorites = userFavorites.map((palette) => {
+    return <FavoritePalette colors={palette.favHexCodes} name={palette.name} />;
+  });
   if (!userFavorites.length) {
     return (
       <section>
@@ -9,8 +14,8 @@ const User = ({ userFavorites }) => {
     );
   } else {
     return (
-      <section>
-        <p>hi</p>
+      <section className="favorite-cards-wrapper">
+        {colorCardsFavorites}
       </section>
     );
   }
