@@ -19,9 +19,11 @@ describe("SavePaletteForm", () => {
     const formTitle = screen.getByText("Please enter a name for your palette.");
     const form = screen.getByTestId("save-palette-form");
     const nameInput = screen.getByPlaceholderText("i.e. website theme");
+    const submitButton = screen.getByDisplayValue("Submit.");
 
     expect(formTitle).toBeInTheDocument();
     expect(form).toBeInTheDocument();
     expect(nameInput).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
   });
 });
