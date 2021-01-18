@@ -13,7 +13,7 @@ const SavePaletteForm = ({ savePalette }) => {
   return (
     <div className="save-palette-background-wrapper">
       <Link to="/colors">
-        <img src={closeButton} className="close-button" />
+        <img alt="close-button" src={closeButton} className="close-button" />
       </Link>
       <section className="save-palette-form-wrapper">
         <h2 className="form-title">Please enter a name for your palette.</h2>

@@ -5,6 +5,7 @@ import "@testing-library/jest-dom";
 import SavePaletteForm from "./SavePaletteForm";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import userEvent from "@testing-library/user-event";
 
 describe("SavePaletteForm", () => {
   it("Should render the save palette form correctly", () => {
@@ -25,5 +26,21 @@ describe("SavePaletteForm", () => {
     expect(form).toBeInTheDocument();
     expect(nameInput).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
+  });
+
+  it("Should route correctly to the maing /colors page when close button is clicked in form", () => {
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <SavePaletteForm />
+      </Router>
+    );
+
+    const closeButton = screen.getByAltText("close-button");
+
+    userEvent.click(closeButton);
+
+    expect(history.location.pathname).toBe("/colors");
   });
 });
