@@ -83,4 +83,35 @@ describe("CardController", () => {
     expect(window4).toHaveStyle("background-color: rgb(57, 141, 112)");
     expect(window5).toHaveStyle("background-color: rgb(62, 80, 64)");
   });
+
+  it("Should render color cards with correct rgb values displayed", () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+
+    const rgbValue1 = screen.getByText("214, 78, 69");
+    const rgbValue2 = screen.getByText("247, 242, 163");
+    const rgbValue3 = screen.getByText("201, 216, 147");
+    const rgbValue4 = screen.getByText("57, 141, 112");
+    const rgbValue5 = screen.getByText("62, 80, 64");
+
+    expect(rgbValue1).toBeInTheDocument();
+    expect(rgbValue2).toBeInTheDocument();
+    expect(rgbValue3).toBeInTheDocument();
+    expect(rgbValue4).toBeInTheDocument();
+    expect(rgbValue5).toBeInTheDocument();
+  });
 });
