@@ -113,13 +113,6 @@ const App = () => {
     setShowUserForm(false);
   };
 
-  const lockCard = () => {
-    //needs to give a class to the ColorCard component to display locked icon
-    //need to create a string for the input that it is locking using the rgb val
-    //needs to utilize the get random with input...
-    //TODO come back to this ... create get random with input string first
-  };
-
   useEffect(() => getColors(), []);
 
   return (
@@ -143,7 +136,6 @@ const App = () => {
                 <CardController
                   rgb={rgbValues}
                   hexCodes={hexCodes}
-                  lockCard={lockCard}
                   colorInputsToggle={colorInputsToggle}
                   submitColorInput={submitColorInput}
                   displaySavePaletteForm={displaySavePaletteForm}
