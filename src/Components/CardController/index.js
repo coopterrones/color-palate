@@ -13,8 +13,8 @@ const CardController = ({
   displaySavePaletteForm,
 }) => {
   return (
-    <section className="card-controller-wrapper">
-      <section className="color-cards">
+    <section data-testid="card-controller" className="card-controller-wrapper">
+      <section data-testid="color-cards" className="color-cards">
         <ColorCard
           color={rgb[0]}
           hexCode={hexCodes[0]}

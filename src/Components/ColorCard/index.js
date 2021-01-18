@@ -19,7 +19,7 @@ const ColorCard = ({
     : "hidden color-form";
 
   const handleColorInputs = (event) => {
-    setUserInput((event.target.value));
+    setUserInput(event.target.value);
   };
 
   useEffect(() => setColorInputsVisible(colorInputsToggle), [
@@ -30,6 +30,7 @@ const ColorCard = ({
   return (
     <section className="card-wrapper">
       <form
+        data-testid="color-input-form"
         className={colorInputsVisibility}
         value={userInput}
         onSubmit={(event) => {
@@ -46,6 +47,7 @@ const ColorCard = ({
         ></input>
       </form>
       <div
+        data-testid="color-window"
         className="color-window"
         style={{
           backgroundColor: hexCode,

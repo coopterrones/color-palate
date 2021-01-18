@@ -121,7 +121,6 @@ const App = () => {
             render={() => (
               <Fragment>
                 <CardController
-                  style={{}}
                   rgb={rgbValues}
                   hexCodes={hexCodes}
                   lockCard={lockCard}
