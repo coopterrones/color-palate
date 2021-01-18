@@ -114,4 +114,35 @@ describe("CardController", () => {
     expect(rgbValue4).toBeInTheDocument();
     expect(rgbValue5).toBeInTheDocument();
   });
+
+  it("Should render color cards with correct hex code values displayed", () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+
+    const hexCode1 = screen.getByText("#D64E45");
+    const hexCode2 = screen.getByText("#F7F2A3");
+    const hexCode3 = screen.getByText("#C9D893");
+    const hexCode4 = screen.getByText("#398D70");
+    const hexCode5 = screen.getByText("#3E5040");
+
+    expect(hexCode1).toBeInTheDocument();
+    expect(hexCode2).toBeInTheDocument();
+    expect(hexCode3).toBeInTheDocument();
+    expect(hexCode4).toBeInTheDocument();
+    expect(hexCode5).toBeInTheDocument();
+  });
 });
