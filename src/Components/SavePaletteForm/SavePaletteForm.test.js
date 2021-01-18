@@ -1,6 +1,5 @@
 import React from "react";
 import { screen, render } from "@testing-library/react";
-import mockData from "../../TestData/_mockData";
 import "@testing-library/jest-dom";
 import SavePaletteForm from "./SavePaletteForm";
 import { Router } from "react-router-dom";

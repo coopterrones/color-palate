@@ -2,8 +2,6 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AddMyOwnColors from "../../Components/AddMyOwnMyColors/index";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
 
 describe("AddMyOwnColors", () => {
   it("AddMyOwnColors button should render correctly", () => {
