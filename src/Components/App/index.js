@@ -110,6 +110,7 @@ const App = () => {
         { name: paletteName, values: [userInputs], favHexCodes: hexCodes },
       ]);
     }
+    setShowUserForm(false);
   };
 
   const lockCard = () => {
@@ -125,7 +126,7 @@ const App = () => {
     <Router>
       <main className="App">
         <h1>Dream Themes</h1>
-        <Link to={viewFavorites ? "/colors" : "/user-favorites"}>
+        <Link to={viewFavorites ? "/colors" : "/colors/user-favorites"}>
           <h3
             className="user-nav-button"
             onClick={() => setViewFavorites((prevStatus) => !prevStatus)}
@@ -152,14 +153,9 @@ const App = () => {
                   randomizeWithInput={getColorsWithInput}
                 />
                 <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
+                {showUserForm && <SavePaletteForm savePalette={savePalette} />}
               </Fragment>
             )}
-          />
-        )}
-        {showUserForm && (
-          <Route
-            path="/colors/save-palette"
-            render={() => <SavePaletteForm savePalette={savePalette} />}
           />
         )}
         <Route
