@@ -16,6 +16,7 @@ const App = () => {
   const [error, setError] = useState("");
   const [showUserForm, setShowUserForm] = useState(false);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [viewFavorites, setViewFavorites] = useState(false);
 
   const getColors = () => {
     apiCalls
@@ -124,8 +125,13 @@ const App = () => {
     <Router>
       <main className="App">
         <h1>Dream Themes</h1>
-        <Link to="/colors/user-favorites">
-          <h3 className="user-nav-button">Saved Palettes</h3>
+        <Link to={viewFavorites ? "/colors" : "/user-favorites"}>
+          <h3
+            className="user-nav-button"
+            onClick={() => setViewFavorites((prevStatus) => !prevStatus)}
+          >
+            {viewFavorites ? "Home" : "Saved Palettes"}
+          </h3>
         </Link>
         {rgbValues && hexCodes && (
           <Route
