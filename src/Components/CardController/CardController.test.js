@@ -51,4 +51,36 @@ describe("CardController", () => {
 
     expect(colorCards).toHaveLength(5);
   });
+
+  it("Should render color cards with correct color window styling", () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+
+    const colorWindows = screen.getAllByTestId("color-window");
+    const window1 = colorWindows[0];
+    const window2 = colorWindows[1];
+    const window3 = colorWindows[2];
+    const window4 = colorWindows[3];
+    const window5 = colorWindows[4];
+
+    expect(window1).toHaveStyle("background-color: rgb(214, 78, 69)");
+    expect(window2).toHaveStyle("background-color: rgb(247, 242, 163)");
+    expect(window3).toHaveStyle("background-color: rgb(201, 216, 147)");
+    expect(window4).toHaveStyle("background-color: rgb(57, 141, 112)");
+    expect(window5).toHaveStyle("background-color: rgb(62, 80, 64)");
+  });
 });
