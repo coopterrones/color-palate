@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, render, waitFor } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import mockData from "../../TestData/_mockData";
 import "@testing-library/jest-dom";
 import ColorCard from "../../Components/ColorCard/index";
