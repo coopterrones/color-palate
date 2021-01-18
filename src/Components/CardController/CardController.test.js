@@ -28,4 +28,27 @@ describe("CardController", () => {
 
     expect(CardControllerElement).toBeInTheDocument();
   });
+
+  it("Should render all 5 color cards correctly", () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+
+    const colorCardsWrapper = screen.getByTestId("color-cards");
+    const colorCards = colorCardsWrapper.children;
+
+    expect(colorCards).toHaveLength(5);
+  });
 });
