@@ -1,5 +1,6 @@
 import React from "react";
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import CardController from "../../Components/CardController/index";
 import mockData from "../../TestData/_mockData";
@@ -167,5 +168,30 @@ describe("CardController", () => {
     const savePaletteButton = screen.getByRole("button");
 
     expect(savePaletteButton).toBeInTheDocument();
+  });
+
+  it("Save palette button click should route to save-palette path", async () => {
+    const colorData = mockData.colors[0];
+    const hexCodeData = mockData.hexCodes[0];
+    const colorInputsHidden = false;
+    const colorInputsShown = true;
+
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={history}>
+        <CardController
+          rgb={colorData}
+          hexCodes={hexCodeData}
+          colorInputsToggle={colorInputsHidden}
+        />
+      </Router>
+    );
+    const savePaletteButton = screen.getByRole("button");
+    userEvent.click(savePaletteButton);
+
+    await waitFor(() =>
+      expect(history.location.pathname).toBe("/colors/save-palette")
+    );
   });
 });
