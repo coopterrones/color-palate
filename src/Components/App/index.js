@@ -118,7 +118,10 @@ const App = () => {
     <Router>
       <main className="App">
         <h1>Dream Themes</h1>
-        <Link to={viewFavorites ? "/" : "/user-favorites"}>
+        <Link
+          data-testid="saved-palettes-link"
+          to={viewFavorites ? "/" : "/user-favorites"}
+        >
           <h3
             className="user-nav-button"
             onClick={() => setViewFavorites((prevStatus) => !prevStatus)}
