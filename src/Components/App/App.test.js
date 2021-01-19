@@ -134,7 +134,7 @@ describe("App", () => {
 
     userEvent.click(screen.getByTestId("saved-palettes-link"));
 
-    await waitFor(() => expect(history.location.pathname).toBe("/"));
+    expect(screen.getByText("Please add some palettes to your list."));
 
     await act(() => Promise.resolve());
   });
