@@ -86,4 +86,18 @@ describe("App", () => {
     await waitFor(() => expect(screen.getByText("57, 141, 112")));
     await waitFor(() => expect(screen.getByText("62, 80, 64")));
   });
+
+  it("should render all the correct hex code values", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => expect(screen.getByText("#D64E45")));
+    await waitFor(() => expect(screen.getByText("#F7F2A3")));
+    await waitFor(() => expect(screen.getByText("#C9D893")));
+    await waitFor(() => expect(screen.getByText("#398D70")));
+    await waitFor(() => expect(screen.getByText("#3E5040")));
+  });
 });
