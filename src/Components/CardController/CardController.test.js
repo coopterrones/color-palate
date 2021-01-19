@@ -190,8 +190,6 @@ describe("CardController", () => {
     const savePaletteButton = screen.getByRole("button");
     userEvent.click(savePaletteButton);
 
-    await waitFor(() =>
-      expect(history.location.pathname).toBe("/colors/save-palette")
-    );
+    await waitFor(() => expect(history.location.pathname).toBe("/"));
   });
 });

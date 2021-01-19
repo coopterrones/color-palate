@@ -12,7 +12,7 @@ describe("SavePaletteForm", () => {
 
     render(
       <Router history={history}>
-        <SavePaletteForm />
+        <SavePaletteForm setShowUserForm={jest.fn()} />
       </Router>
     );
 
@@ -32,7 +32,7 @@ describe("SavePaletteForm", () => {
 
     render(
       <Router history={history}>
-        <SavePaletteForm />
+        <SavePaletteForm setShowUserForm={jest.fn()} />
       </Router>
     );
 
@@ -40,6 +40,6 @@ describe("SavePaletteForm", () => {
 
     userEvent.click(closeButton);
 
-    expect(history.location.pathname).toBe("/colors");
+    expect(history.location.pathname).toBe("/");
   });
 });

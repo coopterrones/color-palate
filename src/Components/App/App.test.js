@@ -10,16 +10,12 @@ import React from "react";
 import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { apiCalls } from "../../apiCalls";
-import _mockData from "../../TestData/_mockData";
+import mockData from "../../TestData/_mockData";
 jest.mock("../../apiCalls");
 
 describe("App", () => {
   beforeEach(() => {
-    apiCalls.getRandomPalette.mockResolvedValue(_mockData.colors[0]);
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
+    apiCalls.getRandomPalette.mockResolvedValue(mockData.colorsForIntegration);
   });
 
   it("should render correct url", async () => {
@@ -32,5 +28,48 @@ describe("App", () => {
     );
 
     await waitFor(() => expect(history.location.pathname).toBe("/"));
+  });
+
+  it("Should call get random palette function on initial load", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() =>
+      expect(apiCalls.getRandomPalette).toHaveBeenCalledTimes(1)
+    );
+
+    await act(() => Promise.resolve());
+  });
+
+  it("Should render color cards correctly", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() =>
+      expect(screen.getAllByTestId("color-window")).toHaveLength(5)
+    );
+  });
+
+  it("Should render color cards correctly with a user input", async () => {
+    apiCalls.getRandomPaletteFromInput.mockResolvedValue(
+      mockData.colorsForIntegration
+    );
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() =>
+      expect(screen.getAllByTestId("color-window")).toHaveLength(5)
+    );
+
+    await act(() => Promise.resolve());
   });
 });

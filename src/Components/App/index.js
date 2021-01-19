@@ -53,7 +53,6 @@ const App = () => {
       ).toUpperCase()}${componentToHex(b).toUpperCase()}`;
     });
     setHexCodes(hexCodes);
-    setUserInputs({ ...userInputs, hexCodes: hexCodes });
   };
 
   const toggleColorInputs = () => {
@@ -119,7 +118,7 @@ const App = () => {
     <Router>
       <main className="App">
         <h1>Dream Themes</h1>
-        <Link to={viewFavorites ? "/colors" : "/colors/user-favorites"}>
+        <Link to={viewFavorites ? "/" : "/user-favorites"}>
           <h3
             className="user-nav-button"
             onClick={() => setViewFavorites((prevStatus) => !prevStatus)}
@@ -130,7 +129,7 @@ const App = () => {
         {rgbValues && hexCodes && (
           <Route
             exact
-            path="/colors"
+            path="/"
             render={() => (
               <Fragment>
                 <CardController
@@ -145,14 +144,19 @@ const App = () => {
                   randomizeWithInput={getColorsWithInput}
                 />
                 <AddMyOwnColors toggleColorInputs={toggleColorInputs} />
-                {showUserForm && <SavePaletteForm savePalette={savePalette} />}
+                {showUserForm && (
+                  <SavePaletteForm
+                    savePalette={savePalette}
+                    setShowUserForm={setShowUserForm}
+                  />
+                )}
               </Fragment>
             )}
           />
         )}
         <Route
           exact
-          path="/colors/user-favorites"
+          path="/user-favorites"
           render={() => <User userFavorites={userFavorites} />}
         />
       </main>

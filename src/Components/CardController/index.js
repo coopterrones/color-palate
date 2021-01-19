@@ -55,7 +55,7 @@ const CardController = ({
           id={4}
         />
       </section>
-      <Link to="/colors">
+      <Link to="/">
         <button
           className="save-palette-button"
           onClick={displaySavePaletteForm}
