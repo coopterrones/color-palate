@@ -119,6 +119,7 @@ const App = () => {
       <main className="App">
         <h1>Dream Themes</h1>
         <Link
+          className="saved-palette-nav-button"
           data-testid="saved-palettes-link"
           to={viewFavorites ? "/" : "/user-favorites"}
         >
