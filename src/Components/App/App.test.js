@@ -1,16 +1,12 @@
-import {
-  render,
-  screen,
-  userEvent,
-  act,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, act, waitFor } from "@testing-library/react";
 import App from "./index";
 import React from "react";
 import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { apiCalls } from "../../apiCalls";
 import mockData from "../../TestData/_mockData";
+import userEvent from "@testing-library/user-event";
+
 jest.mock("../../apiCalls");
 
 describe("App", () => {
@@ -99,5 +95,19 @@ describe("App", () => {
     await waitFor(() => expect(screen.getByText("#C9D893")));
     await waitFor(() => expect(screen.getByText("#398D70")));
     await waitFor(() => expect(screen.getByText("#3E5040")));
+  });
+
+  it("Should display the save palette form on click of save palette button", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() =>
+      userEvent.click(screen.getByText("Save this palette?"))
+    );
+
+    expect(screen.getByTestId("save-palette-form"));
   });
 });
