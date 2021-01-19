@@ -39,6 +39,7 @@ const SavePaletteForm = ({ savePalette, setShowUserForm }) => {
           />
           <br></br>
           <input
+            className="form-submit-button"
             type="button"
             value="Submit."
             onClick={(event) => {

@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 25vh;
+  height: 35vh;
   width: 35vw;
   background-color: white;
 }
@@ -33,12 +33,19 @@
 .save-palette-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .form-submit-button {
-  display: flex;
-  align-self: flex-end;
   margin-top: 3.5vh;
+  width: 35%;
+  background: none;
+  border-color: black;
+  &:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
 }
 
 .palette-name-input {
