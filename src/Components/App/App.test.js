@@ -72,4 +72,18 @@ describe("App", () => {
 
     await act(() => Promise.resolve());
   });
+
+  it("Should render all correct rgb values ", async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => expect(screen.getByText("214, 78, 69")));
+    await waitFor(() => expect(screen.getByText("247, 242, 163")));
+    await waitFor(() => expect(screen.getByText("201, 216, 147")));
+    await waitFor(() => expect(screen.getByText("57, 141, 112")));
+    await waitFor(() => expect(screen.getByText("62, 80, 64")));
+  });
 });
