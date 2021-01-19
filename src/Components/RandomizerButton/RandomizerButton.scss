@@ -4,4 +4,11 @@
   background: none;
   margin: 1vh 10vw 1vh;
   outline: none;
+  transition: 500ms;
+  &:hover {
+    cursor: pointer;
+    background: black;
+    color: white;
+    border-color: black;
+  }
 }

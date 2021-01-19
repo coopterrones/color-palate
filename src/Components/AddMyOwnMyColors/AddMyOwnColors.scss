@@ -1,6 +1,14 @@
 .add-my-own-colors-button {
+  margin-top: 2vh;
+  color: grey;
   background: none;
-  border-style: none none solid none;
+  border-style: none none none none;
+  text-decoration: underline;
   padding-bottom: 0;
   outline: none;
+  transition: 500ms;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 }

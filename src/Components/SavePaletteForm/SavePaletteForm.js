@@ -3,7 +3,7 @@ import "./SavePaletteForm.scss";
 import { Link } from "react-router-dom";
 import closeButton from "../../Assets/close-button-white.png";
 
-const SavePaletteForm = ({ savePalette }) => {
+const SavePaletteForm = ({ savePalette, setShowUserForm }) => {
   const [paletteName, setPaletteName] = useState(null);
 
   const handleInput = (event) => {
@@ -12,8 +12,13 @@ const SavePaletteForm = ({ savePalette }) => {
 
   return (
     <div className="save-palette-background-wrapper">
-      <Link to="/colors">
-        <img alt="close-button" src={closeButton} className="close-button" />
+      <Link to="/">
+        <img
+          alt="close-button"
+          src={closeButton}
+          className="close-button"
+          onClick={() => setShowUserForm(false)}
+        />
       </Link>
       <section className="save-palette-form-wrapper">
         <h2 className="form-title">Please enter a name for your palette.</h2>
@@ -34,6 +39,7 @@ const SavePaletteForm = ({ savePalette }) => {
           />
           <br></br>
           <input
+            className="form-submit-button"
             type="button"
             value="Submit."
             onClick={(event) => {
